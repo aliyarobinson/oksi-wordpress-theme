@@ -1,0 +1,17 @@
+<svg width="120" height="240" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+      <linearGradient id="Gradient1">
+        <stop class="stop1" offset="0%"/>
+        <stop class="stop3" offset="100%"/>
+      </linearGradient>
+      <style type="text/css"><![CDATA[
+        text.first { fill: url(#Gradient1); font-size:50px; }
+        .stop1 { stop-color: #333; }
+        .stop3 { stop-color: #999; }
+      ]]></style>
+  </defs>
+ <text class="first" x="0" y="97%">Hello!</text> 
+ <text x="0" y="97%">WORLD</text>
+
+  
+</svg>
