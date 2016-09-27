@@ -1,0 +1,41 @@
+$wrapper-width: 960px;
+$font-size: 16px;
+$line-height: $font-size * 1.6;
+$h1-size: $font-size * 2; // all other fonts are related to $font-size.
+
+
+//Colors
+$purple: #786e77;
+$tan: #f8f2e2;
+$gray: #060606;
+$gray-dark: #4b4b4b;
+
+
+// Text Color
+$font-color-dark: $gray;
+$font-color: $tan;
+$font-color-light: $purple;
+
+// Form Background Color
+$body-bg-color: #fff;
+
+
+
+///////////////////
+
+//Color of Selected Objects
+$selected-color: #0086e6;
+
+//The Focus Indicator on Fields
+$focus-shadow: 0 0 3px #0095ff;
+
+//The Link Style
+$link-color: $purple;
+$link-hover-color: rgba($link-color,0.8);
+$link-active-color: #004096;
+
+//Breakpoint sizes
+$breakpoint-phone: 420px;
+$breakpoint-phone-to-tablet: 768px;
+$breakpoint-tablet-to-desktop: 1240px;
+$breakpoint-desktop-to-extralarge: 1479px;
