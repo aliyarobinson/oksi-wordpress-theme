@@ -109,6 +109,7 @@ define( 'THEMEROOT', get_stylesheet_directory_uri());
 define( 'IMAGES', THEMEROOT. '/img' );
 define( 'FONTS', THEMEROOT. '/fonts' );
 define( 'SCRIPTS', THEMEROOT. '/js' );
+define( 'STYLES', THEMEROOT. '/css' );
 //define( 'SITEROOT', home_url());
 //define( 'UPLOADS', SITEROOT.'/wp-content/uploads/2014/04');
 
@@ -129,10 +130,100 @@ if ( ! function_exists( 'load_css_head' ) ) {
 			  background: url(<?php echo $header_bkgd; ?>) 0 0;
 			}*/
 			@font-face {
-		    	font-family: 'opensans';
-			    src: url('<?php echo FONTS; ?>/open-sans/opensans-light-webfont.woff') format('woff'), 
-				    url('<?php echo FONTS; ?>/open-sans/opensans-light-webfont.woff2') format('woff2'), 
-				    url('<?php echo FONTS; ?>/open-sans/opensans-light-webfont.ttf') format('truetype'); 
+		    	font-family: 'bodoni';
+			    src: url('<?php echo FONTS; ?>/bodoni-mt/BOD_MT.woff') format('woff'), 
+				    url('<?php echo FONTS; ?>/bodoni-mt/BOD_MT.woff2') format('woff2'), 
+				    url('<?php echo FONTS; ?>/bodoni-mt/BOD_MT.ttf') format('truetype'); 
+			    font-weight: 100;
+			    font-style: normal;
+			}
+
+			@font-face {
+		    	font-family: 'bodoni';
+			    src: url('<?php echo FONTS; ?>/bodoni-mt/BOD_R.woff') format('woff'), 
+				    url('<?php echo FONTS; ?>/bodoni-mt/BOD_R.woff2') format('woff2'), 
+				    url('<?php echo FONTS; ?>/bodoni-mt/BOD_R.ttf') format('truetype'); 
+			    font-weight: 400;
+			    font-style: normal;
+			}
+
+			@font-face {
+		    	font-family: 'bodoni';
+			    src: url('<?php echo FONTS; ?>/bodoni-mt/BOD_I.woff') format('woff'), 
+				    url('<?php echo FONTS; ?>/bodoni-mt/BOD_I.woff2') format('woff2'), 
+				    url('<?php echo FONTS; ?>/bodoni-mt/BOD_I.ttf') format('truetype'); 
+			    font-weight: 400;
+			    font-style: italic;
+			}
+
+			@font-face {
+		    	font-family: 'bodoni';
+			    src: url('<?php echo FONTS; ?>/bodoni-mt/BOD_B.woff') format('woff'), 
+				    url('<?php echo FONTS; ?>/bodoni-mt/BOD_B.woff2') format('woff2'), 
+				    url('<?php echo FONTS; ?>/bodoni-mt/BOD_B.ttf') format('truetype'); 
+			    font-weight: 600;
+			    font-style: normal;
+			}
+
+			@font-face {
+		    	font-family: 'bodoni';
+			    src: url('<?php echo FONTS; ?>/bodoni-mt/BOD_BI.woff') format('woff'), 
+				    url('<?php echo FONTS; ?>/bodoni-mt/BOD_BI.woff2') format('woff2'), 
+				    url('<?php echo FONTS; ?>/bodoni-mt/BOD_BI.ttf') format('truetype'); 
+			    font-weight: 600;
+			    font-style: italic;
+			}
+
+			@font-face {
+		    	font-family: 'khula';
+			    src: url('<?php echo FONTS; ?>/khula/khula-light-webfont.woff') format('woff'), 
+				    url('<?php echo FONTS; ?>/khula/khula-light-webfont.woff2') format('woff2'), 
+				    url('<?php echo FONTS; ?>/khula/khula-light-webfont.ttf') format('truetype'); 
+			    font-weight: 100;
+			    font-style: normal;
+			}
+
+			@font-face {
+		    	font-family: 'khula';
+			    src: url('<?php echo FONTS; ?>/khula/khula-regular-webfont.woff') format('woff'), 
+				    url('<?php echo FONTS; ?>/khula/khula-regular-webfont.woff2') format('woff2'), 
+				    url('<?php echo FONTS; ?>/khula/khula-regular-webfont.ttf') format('truetype'); 
+			    font-weight: 400;
+			    font-style: normal;
+			}
+
+			@font-face {
+		    	font-family: 'khula';
+			    src: url('<?php echo FONTS; ?>/khula/khula-bold-webfont.woff') format('woff'), 
+				    url('<?php echo FONTS; ?>/khula/khula-bold-webfont.woff2') format('woff2'), 
+				    url('<?php echo FONTS; ?>/khula/khula-bold-webfont.ttf') format('truetype'); 
+			    font-weight: 600;
+			    font-style: normal;
+			}
+
+			@font-face {
+		    	font-family: 'khula';
+			    src: url('<?php echo FONTS; ?>/khula/khula-semibold-webfont.woff') format('woff'), 
+				    url('<?php echo FONTS; ?>/khula/khula-semibold-webfont.woff2') format('woff2'), 
+				    url('<?php echo FONTS; ?>/khula/khula-semibold-webfont.ttf') format('truetype'); 
+			    font-weight: 800;
+			    font-style: normal;
+			}
+
+			@font-face {
+		    	font-family: 'khula';
+			    src: url('<?php echo FONTS; ?>/khula/khula-extrabold-webfont.woff') format('woff'), 
+				    url('<?php echo FONTS; ?>/khula/khula-extrabold-webfont.woff2') format('woff2'), 
+				    url('<?php echo FONTS; ?>/khula/khula-extrabold-webfont.ttf') format('truetype'); 
+			    font-weight: 900;
+			    font-style: normal;
+			}
+
+			@font-face {
+		    	font-family: 'fontawesome';
+			    src: url('<?php echo FONTS; ?>/fontawesome/fontawesome-webfont.woff') format('woff'), 
+				    url('<?php echo FONTS; ?>/fontawesome/fontawesome-webfont.woff2') format('woff2'), 
+				    url('<?php echo FONTS; ?>/fontawesome/fontawesome-webfont.ttf') format('truetype'); 
 			    font-weight: 100;
 			    font-style: normal;
 			}

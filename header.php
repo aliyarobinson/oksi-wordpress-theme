@@ -23,8 +23,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <title><?php bloginfo( 'name' ); ?> | <?php bloginfo( 'description' ); ?></title>
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+<!-- <link rel="stylesheet" href="<?php echo STYLES; ?>/font-awesome.min.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="<?php echo STYLES; ?>/jquery.mCustomScrollbar.css">
 <!-- <link rel="stylesheet" href="css/style.css"> -->
 <!-- <script src="js/prefixfree.min.js"></script> -->
 <!--[if lt IE 9]>
@@ -47,18 +48,20 @@
 	            <?php bloginfo( 'name' ); ?>
 	          </span>
 	          <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="nav-trigger">
-	            <img src="img/logo-path-2.svg" alt="">
+	            <img src="img/logo-short.svg" alt="">
 	          </a>
 	        </h1>
+	        <h2 class="full-name">Oksana Tanasiv</h2>
 	      <?php else : ?>
 	        <p class="logo-wrapper">
 	          <span class="hide-copy">
 	            <?php bloginfo( 'name' ); ?>
 	          </span>
 	          <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="nav-trigger">
-	            <img src="<?php echo IMAGES; ?>/logo-path-2.svg" alt="">
+	            <img src="<?php echo IMAGES; ?>/logo-short-3.svg" alt="">
 	          </a>
 	        </p>
+	        <p class="full-name">Oksana Tanasiv</p>
 	      <?php
 	      endif;
 	    ?>

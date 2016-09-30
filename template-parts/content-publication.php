@@ -1,0 +1,108 @@
+<?php
+/**
+ * Template part for displaying page content in page.php.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package Oksana_T.
+ */
+
+?>
+
+<article id="post-<?php the_ID(); ?>" <?php post_class(['list-page','category','non-homepage']); ?>>
+<div class="wrapper">
+      <header>
+      	<?php //breadcrumb_trail();   ?>
+        <ul class="breadcrumbs">
+          <li><a href="#">home</a></li>
+          <li><a href="#">press</a></li>
+          <li class="active">publications</li>
+        </ul>
+      </header>
+      <section class="content-mod">
+        <aside>
+          <nav class="time-nav">
+            <ul>              
+              <li><button class="all">All</button></li>
+              <li><button data-year="2016">2016</button></li>
+              <li><button data-year="2015">2015</button></li>
+              <li><button data-year="2014">2014</button></li>
+            </ul>
+          </nav>
+        </aside>
+
+		<?php
+
+		// check if the repeater field has rows of data
+		if( have_rows('publication') ): ?>
+        	<ul class="list">
+			<?php
+		 	// loop through the rows of data
+		    while ( have_rows('publication') ) : the_row();
+
+		    	$fulldate = get_sub_field('date');
+		    	$fdArr = explode("/", $fulldate);
+		    	$year = array_pop($fdArr);
+
+		        // display a sub field value
+		        // the_sub_field('sub_field_name');
+		        ?>
+
+		        <li data-year="<?php echo $year; ?>">
+		            <div class="main-content">
+		              <div class="meta">
+		                <date><?php the_sub_field('date'); ?></date>
+		                <div class="location"><?php the_sub_field('location'); ?></div>
+		                <div class="publisher"><?php the_sub_field('publisher'); ?></div>
+		              </div>
+		              <h2 class="title"><a href="<?php the_sub_field('url'); ?>" target="_blank" target="_blank"><?php the_sub_field('title'); ?></a></h2>
+		              <div class="author">By: <?php the_sub_field('author'); ?></div>
+		            </div>
+		        </li>
+
+		        <?php
+
+		    endwhile;
+
+		else :
+
+		    echo "<h3>No Publications Listed</h3>"
+		?>
+
+		</ul>
+
+		<?php
+
+		endif;
+
+		?>
+
+      </section>
+      <div class="share-mod vertical">
+        <ul class="social-icons">
+          <li class="social-item">
+            <a href="http://www.facebook.com/sharer.php?u=<?php the_permalink();?>&amp;t=<?php the_title(); ?>" title="Share on Facebook.">
+              <span aria-hidden="true" class="icon fa-facebook"></span>
+              <span class="hide-copy" aria-label="Share on Facebook">  
+                Facebook
+              </span>
+            </a>
+          </li>
+          <li class="social-item">
+          	<a href="http://twitter.com/home/?status=<?php the_title(); ?> - <?php the_permalink(); ?>" title="Tweet this!"></a>
+              <span aria-hidden="true" class="icon fa-twitter"></span>
+              <span class="hide-copy" aria-label="Tweet">  
+                Twitter
+              </span>
+            </a>
+          </li>
+          <li class="social-item">
+            <a href="https://plus.google.com/share?url=<?php the_permalink(); ?>"> 
+              <span aria-hidden="true" class="icon fa-google-plus"></span>
+              <span class="hide-copy" aria-label="Share on Google Plus">  
+               Google Plus</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+</article><!-- #post-## -->
