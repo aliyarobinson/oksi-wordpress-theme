@@ -421,15 +421,18 @@ input {
   border-style: none solid none none;
   line-height: 0px;
   padding: 5px;
+  z-index: 5;
 
   a {
     display: inline-block;
     width: 100%;
+    position: relative;
   }
 }
 
 .full-name {
   position: absolute;
+  z-index: 4;
   display: inline;
   padding-left: 150px;
   color: #8b8b8b;
@@ -644,6 +647,7 @@ input {
   position: relative;
   height: auto;
   padding: 0 0 60px;
+  // margin: 100px 0 0;
 }
 
 /*******************************
@@ -1064,6 +1068,13 @@ input {
     .grid-item.small { 
       width: 215px;
       height: 150px;
+
+      img {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
     .grid-item.large {
       width: 450px;
@@ -1702,12 +1713,12 @@ input {
       .grid-item {
 
         .hover-content {
-          height: calc(100% - 9px);
+          // height: calc(100% - 9px);
         }
 
         &:hover {
           .hover-content {
-            height: calc(100% - 9px);
+            // height: calc(100% - 9px);
           }
         }
       }
@@ -1756,12 +1767,12 @@ input {
       .grid-item {
 
         .hover-content {
-          height: calc(100% - 9px);
+          // height: calc(100% - 9px);
         }
         
         &:hover {
           .hover-content {
-            height: calc(100% - 9px);
+            // height: calc(100% - 9px);
           }
         }
       }
@@ -1810,8 +1821,14 @@ input {
         &.small {
           width: 45%;
           height: auto;
+          max-height: 150px;
           margin: 0 0 0 5%;
           float: right;
+          padding-bottom: 30%;
+          // width: 45%;
+          // height: auto;
+          // margin: 0 0 0 5%;
+          // float: right;
 
           &:first-child {
             float: left;
@@ -1820,18 +1837,33 @@ input {
         }
 
         .hover-content {
-          height: calc(100% - 9px);
+          // height: calc(100% - 9px);
         }
       }
     }
     .grid {
       .grid-item {
         &.small {
-          width: 47%;
+          width: 48%;
           height: auto;
-          margin: 0 3% 0 0;
-          position: relative;
+          max-height: 150px;
+          margin: 0 0 20px 0;
           float: left;
+          padding-bottom: 30%;
+          // width: 47%;
+          // height: auto;
+          // margin: 0 3% 0 0;
+          // position: relative;
+          // float: left;
+          // 
+          &:nth-child(odd) {
+            // margin:0 0 20px 0;
+            float: left;
+          }
+          &:nth-child(even) {
+            // margin:0 0 20px 0;
+            float: right;
+          }
         }
       }
     }
@@ -1998,6 +2030,12 @@ input {
       max-width: 390px;
       left: 50%;
       transform: translateX(-50%);
+      padding-bottom: 65%;
+      margin: 0 auto 30px;
+
+      &:nth-child(even){
+        float: left;
+      }
     }
 
     .grid-header .grid-item .hover-content {

@@ -10,7 +10,7 @@
 ?>
 <?php $i = 0; ?>
 <?php //$i = 2; ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(['category','non-homepage']); ?>>
 	<div class="wrapper">
       <div class="grid-module">
         <header class="grid-header">
