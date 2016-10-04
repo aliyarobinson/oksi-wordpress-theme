@@ -108,16 +108,17 @@ var AYR = AYR || {};
 
       $('.expand-btn').on('click',function(e){
         e.preventDefault();
-
+        console.log('image clicked');
         // currImg = $(this).attr('href');
         var overlay = $('.overlay');
         var wrapper = $(this).closest('.img-wrapper');
         var image = $(this).closest('.img-wrapper').find('img').attr('src');
 
+        console.log('wrapper: ', wrapper);
+        console.log('image: ', image);
         // Fill img wrapper
-        wrapper.css({
-          'background-image': image
-        });
+        overlay.find('.img-wrapper').css('background-image', 'url('+image+')');
+        // });
 
         // Show Overlay
         overlay.addClass('active');

@@ -305,7 +305,7 @@ input {
   .img-wrapper {
     width: 100%;
     height: 100%;
-    background-image: url('../img/category/dollar-art/whist-single.jpg');
+    // background-image: url('../img/category/dollar-art/whist-single.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -655,6 +655,18 @@ input {
   Breadcrumbs Styles
 
 *******************************/
+
+#breadcrumbs {
+  color: $tan;
+  text-transform: lowercase;
+  font-size: 16px;
+
+  .breadcrumb_last {
+    font-size: 16px;
+    color: $tan;
+  }
+}
+
 .breadcrumbs {
 
   margin: 0 0 20px;
@@ -1962,7 +1974,7 @@ input {
   }
 
   .menu-nav-btn__bar {
-    width: 70%;
+    width: 74%;
 
     height: 1px;
     background: $tan;

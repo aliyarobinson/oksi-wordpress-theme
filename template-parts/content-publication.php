@@ -12,12 +12,13 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(['list-page','category','non-homepage']); ?>>
 <div class="wrapper">
       <header>
-      	<?php //breadcrumb_trail();   ?>
-        <ul class="breadcrumbs">
-          <li><a href="#">home</a></li>
-          <li><a href="#">press</a></li>
-          <li class="active">publications</li>
-        </ul>
+        <?php
+          if ( function_exists('yoast_breadcrumb') ) {
+          yoast_breadcrumb('
+          <p id="breadcrumbs">','</p>
+          ');
+          }
+        ?>
       </header>
       <section class="content-mod">
         <aside>
