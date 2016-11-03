@@ -8,7 +8,21 @@
  */
 
 ?>
-
+<ul class='hero-images'>
+    <li><img src="http://localhost/oksanat/wp-content/themes/oksanat/img/hero/img_1.jpg" /></li>
+    <li><img src="http://localhost/oksanat/wp-content/themes/oksanat/img/hero/img_2.jpg" /></li>
+    <li><img src="http://localhost/oksanat/wp-content/themes/oksanat/img/hero/img_3.jpg" /></li>
+    <li><img src="http://localhost/oksanat/wp-content/themes/oksanat/img/hero/img_4.jpg" /></li>
+    <li><img src="http://localhost/oksanat/wp-content/themes/oksanat/img/hero/img_5.jpg" /></li>
+    <li><img src="http://localhost/oksanat/wp-content/themes/oksanat/img/hero/img_6.jpg" /></li>
+</ul>
+<div class="loader-wrapper">
+	<img src="<?php echo IMAGES; ?>/oksana-signature-light.png" alt="logo">
+	<div class="loader">
+		<div class="progress-bar"></div>
+	</div>
+	<div class="percentage">0%</div>
+</div>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="hero content-wrapper wrapper">
 	  <div id="gallery" class="cycle-slideshow" 
@@ -22,38 +36,19 @@
 	      data-cycle-swipe-fx=scrollHorz
 	      data-cycle-overlay-template="<div class='slide-title'>{{title}}</div>"
 	      >
-	      <!-- <a class="cycle-slide" style="background-image:url(<?php echo IMAGES; ?>/hero/img1-reincarnation.jpg)" href="#" data-title="Reincarnations"></a>
-	      <a class="cycle-slide" style="background-image:url(<?php echo IMAGES; ?>/hero/img2-code-u.jpg)" href="#" data-title='Code "U"'></a>
-	      <a class="cycle-slide" style="background-image:url(<?php echo IMAGES; ?>/hero/img3-couture-art-2.jpg)" href="#" data-title="Couture Art"></a>
-	      <a class="cycle-slide" style="background-image:url(<?php echo IMAGES; ?>/hero/img4-dollar-art-15-16.jpg)" href="#" data-title="Dollar Art 15/16" data-cycle-desc="Dollar Art 15/16"></a> -->
 
 		<?php
-
-		// check if the repeater field has rows of data
 		if( have_rows('slide') ):
-
-		 	// loop through the rows of data
-		    while ( have_rows('slide') ) : the_row();
-
-		        // display a sub field value
-		        // the_sub_field('sub_field_name');
-		        ?>
-
-		        <a class="cycle-slide" style="background-image:url(<?php the_sub_field('image'); ?>" href="<?php the_sub_field('page'); ?>" data-title="<?php the_sub_field('title'); ?>" data-cycle-desc="<?php the_sub_field('title'); ?>"></a>
-
+		    while ( have_rows('slide') ) : the_row();?>
+		        <a class="cycle-slide" style="background-image:url(<?php the_sub_field('image'); ?>" href="<?php the_sub_field('page'); ?>" data-title="<?php the_sub_field('title'); ?>" data-cycle-desc="<?php the_sub_field('title'); ?>">
+		        	<img src="<?php the_sub_field('image'); ?>" alt="<?php the_sub_field('title'); ?>">
+		        </a>
 		        <?php
-
 		    endwhile;
-
 		else :
-
 		    // no rows found
-
 		endif;
-
 		?>
-
-
 	      <div class="cycle-overlay custom"></div>
 	      <div class="progress-module">
 	        <div id="progress-back"></div>

@@ -8,8 +8,14 @@
  */
 
 ?>
-
-<article id="post-<?php the_ID(); ?>" <?php post_class(['list-page','category','non-homepage']); ?>>
+<?php
+$classes = array(
+    'list-page',
+    'category',
+    'non-homepage'
+);
+?>
+<article id="post-<?php the_ID(); ?>" <?php post_class($classes); ?>>
 <div class="wrapper">
       <header>
         <?php
@@ -25,9 +31,6 @@
           <nav class="time-nav">
             <ul>              
               <li><button class="all">All</button></li>
-              <li><button data-year="2016">2016</button></li>
-              <li><button data-year="2015">2015</button></li>
-              <li><button data-year="2014">2014</button></li>
             </ul>
           </nav>
         </aside>
@@ -44,11 +47,7 @@
 		    	$fulldate = get_sub_field('date');
 		    	$fdArr = explode("/", $fulldate);
 		    	$year = array_pop($fdArr);
-
-		        // display a sub field value
-		        // the_sub_field('sub_field_name');
-		        ?>
-
+		      ?>
 		        <li data-year="<?php echo $year; ?>">
 		            <div class="main-content">
 		              <div class="meta">
@@ -90,7 +89,7 @@
             </a>
           </li>
           <li class="social-item">
-          	<a href="http://twitter.com/home/?status=<?php the_title(); ?> - <?php the_permalink(); ?>" title="Tweet this!"></a>
+          	<a href="http://twitter.com/home/?status=<?php the_title(); ?> - <?php the_permalink(); ?>" title="Tweet this!">
               <span aria-hidden="true" class="icon fa-twitter"></span>
               <span class="hide-copy" aria-label="Tweet">  
                 Twitter

@@ -31,7 +31,7 @@
 <!--[if lt IE 9]>
 <script src="js/html5shiv.js"></script>
 <![endif]-->
-<link rel="icon" type="image/png" href="img/favicon.png" />
+<link rel="icon" type="image/png" href="<?php echo IMAGES; ?>/favicon.png" />
 <?php wp_head(); ?>
 </head>
 
@@ -71,75 +71,9 @@
 	      <span class="menu-nav-btn__bar"></span>
 	      <span class="menu-nav-btn__bar"></span>
 	    </button>
-	    <nav class="site-nav" role="navigation">
-	      <ul>
-	        <li><a href="about.html" class="nav-trigger">About Artist</a></li>
-	        <li><a href="exhibitions.html" class="nav-trigger">Exhibitions</a></li>
-	        <li><a href="dealer-info.html" class="nav-trigger">Dealer Info</a></li>
-	        <li><a href="contact.html" class="nav-trigger">Contact</a></li>
-	        <li class="drop-down">
-	          <a href="collections.html" class="nav-trigger">Collections</a>
-	          <ul class="sub-nav">
-	            <li>
-	              <a href="#" class="nav-trigger"><span>Code "U"</span></a>
-	            </li>
-	            <li>
-	              <a href="#" class="nav-trigger"><span>Dollar Art 15/16</span></a>
-	            </li>
-	            <li class="shop">
-	              <a href="#" class="nav-trigger"><span>Fashion Illustrations</span></a>
-	            </li>
-	            <li>
-	              <a href="#" class="nav-trigger"><span>Reincarnation</span></a>
-	            </li>
-	            <li>
-	              <a href="#" class="nav-trigger"><span>Couture Art</span></a>
-	            </li>
-	            <li>
-	              <a href="#" class="nav-trigger"><span>Odeur de Chanel</span></a>
-	            </li>
-	            <li>
-	              <a href="#" class="nav-trigger"><span>Dollar Art</span></a>
-	            </li>
-	          </ul>
-	        </li>
-	        <li class="drop-down">
-	          <a href="archives.html" class="nav-trigger">Archives</a>
-	          <ul class="sub-nav">
-	            <li>
-	              <a href="#" class="nav-trigger"><span>Fashion Art</span></a>
-	            </li>
-	            <li class="shop">
-	              <a href="#" class="nav-trigger"><span>Fashionista</span></a>
-	            </li>
-	            <li>
-	              <a href="#" class="nav-trigger"><span>Faberge Collection</span></a>
-	            </li>
-	            <li>
-	              <a href="#" class="nav-trigger"><span>Voice of Ukraine</span></a>
-	            </li>
-	            <li>
-	              <a href="#" class="nav-trigger"><span>Fav Dress</span></a>
-	            </li>
-	            <li>
-	              <a href="#" class="nav-trigger"><span>Ukraine.No War.</span></a>
-	            </li>
-	          </ul>
-	        </li>
-	        <li class="drop-down">
-	          <a href="press.html" class="nav-trigger"><span>Press</span></a>
-	          <ul class="sub-nav">
-	            <li><a href="tv-interviews.html" class="nav-trigger"><span>TV Interviews</span></a></li>
-	            <li><a href="publications.html" class="nav-trigger"><span>Publications</span></a></li>
-	          </ul>
-	        </li>
-	        <li class="shop"><a href="art-post-card.html" class="nav-trigger">Art Post Cards</a></li>
-	      </ul>
-	    </nav>
-	    <!-- <nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'oksanat' ); ?></button>
+	    <nav id="site-navigation" class="site-nav" role="navigation">
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-		</nav> -->
+		</nav> 
 	  </div>
 	</header>
 

@@ -1,24 +1,16 @@
 "use strict"; 
 
-var AYR = AYR || {};
+var OT = OT || {};
 
 (function($){
 
-
   // Cache DOM elements for future use
-  var mainContent = $('main');
-  var displayContent = $('.content-display-wrapper > .content-display');
   var loader = $('.loader-wrapper');
   var menuBtn = $('.menu-btn');
-  var ddBtn = $('.drop-down');
-  var timelineNav = $('.time-nav');
-  var timelineBtn = timelineNav.find('button');
-  // var subMenu = $('.drop-down > .sub-nav');
-  var timelineBtns = $('.timeline-btn');
+  var ddBtn = $('.menu-item-has-children');
   var siteNav = $('.site-nav');
   var siteHeader = $('.site-header');
-  var last_known_scroll_position = 0;
-  var ticking = false;
+  var timelineNav = $('.time-nav');
 
   // If ontouchstart exists then set click handler to touchstart otherwise set clickhandler to click
   var clickHandler = ('ontouchstart' in document.documentElement ? "touchstart" : "click");
@@ -27,62 +19,90 @@ var AYR = AYR || {};
   /**************************************/
   /*   Application Object
   /***************************************************/
-  AYR = {
-    currPageName:"",
-    contentElement: {},
+  OT = {
 
     init: function () {
-      console.log('init');
-
+      
       /**************************************/
-      /*   Navigation link click
+      /*   Navigation Menu Button click
       /***************************************************/
-
       menuBtn.on(clickHandler, function(){
-        console.log('clicked menu');
         menuBtn.toggleClass('active');
         siteNav.toggleClass('active');
         siteHeader.toggleClass('mobile-active');
       });
 
+      /**************************************/
+      /*   Drop Down link click 
+      /***************************************************/
       ddBtn.on(clickHandler, function(e){
-        e.preventDefault();
-        $(this).toggleClass('active');
-        $(this).find('.sub-nav').toggleClass('active');
+        var thisLink = $(e.target);
+        if ( thisLink.closest('.menu-item').hasClass('menu-item-has-children') ){
+          e.preventDefault();
+          $(this).toggleClass('active');
+          $(this).find('.sub-menu').toggleClass('active');
+        }
       });
 
-      $(".site-nav").mCustomScrollbar({
-        // theme:"minimal"
+      /**************************************/
+      /*   Subscribe Form Reveal Script
+      /***************************************************/
+      $('.visual-form').on(clickHandler, function(e){
+        e.preventDefault();
+
+        var visForm = $(this);
+        var realForm = visForm.find('+ .real-form');
+
+        visForm.addClass('hide-form');
+        realForm.removeClass('hide-form');
+
+        realForm.find('p:first-child input').focus();
       });
+
+      /**************************************/
+      /*   Scrollbar Activation
+      /***************************************************/
+      $(".site-nav, .grid-header .content").mCustomScrollbar();
       
-      $(".grid-header .content").mCustomScrollbar({
-        // theme:"minimal"
-      });
+      /**************************************/
+      /*   Timeline Nav Generator
+      /***************************************************/
+      if ($('.site-content > article').hasClass('list-page')){
+        var yearList = [];
 
-      timelineBtn.on(clickHandler, function(e){
+        $('.list > li').each(function() {
+          var thisYear = $(this).data('year');
+          if (yearList.indexOf(thisYear) === -1) {
+              yearList.push(thisYear);
+          }  
+        });
+
+        for(var year in yearList){
+          var yearStr = yearList[year];
+          $('<li><button data-year="'+  yearStr +'">'+  yearStr +'</button></li>').appendTo('.time-nav ul');
+        }
+      }
+
+      /**************************************/
+      /*   Timeline Button Script
+      /***************************************************/
+      timelineNav.find('button').on(clickHandler, function(e){
         e.preventDefault();
-        console.log('time click');
         var $this = $(this);
         var year = $this.data('year');
-        console.log('time click year: ', year);
 
         $('.list li').removeClass('collapsed');
-        
         if ( !($this).hasClass('all') ){
           $('.list li').not('[data-year="'+year+'"]').addClass('collapsed');
         }
       });
-
-  
 
       /**************************************/
       /*   Video Click image swap
       /***************************************************/
       $(document).on( clickHandler, '.video', function(e) { 
         e.preventDefault();
-        console.log('!!!'); 
         var vidID = $(this).attr('id');
-
         var iframe_url = "https://www.youtube.com/embed/" + vidID + "?rel=0&autoplay=1&autohide=1&showinfo=0";
     
         // The height and width of the iFrame should be the same as parent
@@ -92,53 +112,37 @@ var AYR = AYR || {};
         $(this).append(iframe);
       });
       
-      $(document).on( 'click', '.share-mod.vertical a', function(e) {
+      /**************************************/
+      /*   Share button Click Script
+      /***************************************************/
+      $(document).on( 'click', '.share-mod a', function(e) {
         /*************Open Shares in New Window Code**********/
         e.preventDefault();
         var url = $(this).attr('href');
-        AYR.popupCenter(url,'shareWindow','600', '600');
+        OT.popupCenter(url,'shareWindow','600', '600');
       });
-
-
-
-
+      
       /**************************************/
-      /*   Image Expand Code
+      /*   Image Expand Script
       /***************************************************/
-
       $('.expand-btn').on('click',function(e){
         e.preventDefault();
-        console.log('image clicked');
-        // currImg = $(this).attr('href');
         var overlay = $('.overlay');
         var wrapper = $(this).closest('.img-wrapper');
         var image = $(this).closest('.img-wrapper').find('img').attr('src');
 
-        console.log('wrapper: ', wrapper);
-        console.log('image: ', image);
-        // Fill img wrapper
         overlay.find('.img-wrapper').css('background-image', 'url('+image+')');
-        // });
-
-        // Show Overlay
         overlay.addClass('active');
       });
 
       $('.overlay .close').on('click',function(e){
         e.preventDefault();
-
         var overlay = $('.overlay');
-
-        // Hide Overlay
         overlay.removeClass('active');
       });
 
-
-
-
-
       /**************************************/
-      /*   Slideshow Code
+      /*   Slideshow Script
       /***************************************************/
       var progress = $('#progress'),
       slideshow = $( '.cycle-slideshow' );
@@ -160,120 +164,24 @@ var AYR = AYR || {};
           progress.animate({ width: '100%' }, timeoutRemaining, 'linear' );
       });
 
-
-
-
-      // $('.category .grid').masonry({
-      //   itemSelector: '.grid-item'
-      // });
       /**************************************/
-      /*   Window Scroll
+      /*   Collection Image Load
       /***************************************************/
-      // Reference: https://developer.mozilla.org/en-US/docs/Web/Events/scroll
-      // Reference: http://www.html5rocks.com/en/tutorials/speed/animations/
-
-      function doSomething(scroll_pos) {
-        // if(ayrApi.isMobile() === false) {
-        //   if(last_known_scroll_position >= 100 ){
-        //     siteHeader.classList.add('small');
-        //   }else{
-        //     siteHeader.classList.remove('small');
-        //   }
-        // }
-      }
-
-      window.addEventListener('scroll', function(e) {
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        last_known_scroll_position = scrollTop;
-        if (!ticking) {
-          window.requestAnimationFrame(function() {
-            doSomething(last_known_scroll_position);
-            ticking = false;
-          });
-        }
-        ticking = true;
-      });
-
+      $('.grid-item img').on('load', function() {
+        console.log('img loaded');
+        $(this).removeClass('collapsed')
+        $(this).find('+ .uil-reload-css').addClass('collapsed');
+      })
 
       /**************************************/
       /*   Window Load
       /***************************************************/
-
       window.onload = function () {
-
-        $('#gallery > div').imagesLoaded( { background: true }, function() {
-          console.log('#container background image loaded');
+        $('.hero-images').imagesLoaded(function() {
           $('.loader-wrapper').addClass('collapsed');
           $('.content-container').removeClass('collapsed');
         });
-
-        
-        // ayrApi.toTop();
       }
-
-
-      /**************************************/
-      /*   Window Resize
-      /***************************************************/
-      // Reference: https://developer.mozilla.org/en-US/docs/Web/Events/resize
-      var optimizedResize = (function() {
-          var callbacks = [],
-              running = false;
-          
-          // fired on resize event
-          function resize() {
-              if (!running) {
-                  running = true;
-                  if (window.requestAnimationFrame) {
-                      window.requestAnimationFrame(runCallbacks);
-                  } else {
-                      setTimeout(runCallbacks, 66);
-                  }
-              }
-          }
-
-          // run the actual callbacks
-          function runCallbacks() {
-              callbacks.forEach(function(callback) {
-                  callback();
-              });
-              running = false;
-          }
-
-          // adds callback to loop
-          function addCallback(callback) {
-              if (callback) {
-                  callbacks.push(callback);
-              }
-          }
-
-          return {
-              // public method to add additional callback
-              add: function(callback) {
-                  if (!callbacks.length) {
-                      window.addEventListener('resize', resize);
-                  }
-                  addCallback(callback);
-              }
-          }
-      }());
-
-      // start process
-      optimizedResize.add(function() {
-        // if(ayrApi.isMobile()){
-        //   siteHeader.classList.remove('small');
-        // } else {
-        //   if(last_known_scroll_position >= 100 ){
-        //     siteHeader.classList.add('small');
-        //   }else{
-        //     siteHeader.classList.remove('small');
-        //   }
-        // }
-
-        // Resize Content Display Wrapper based on new height of content on resize
-        // contentDisplayWrapper.style.height = $('.content-pages > .' + AYR.currPageName + '-page').offsetHeight + 'px';
-      });
-
     }, // End Init
 
     /********************************************************************/
@@ -299,9 +207,8 @@ var AYR = AYR || {};
           newWindow.focus();
       }
     }
-
   };
 
 })(jQuery); // End Self Evoking Function
 
-AYR.init();
+OT.init();

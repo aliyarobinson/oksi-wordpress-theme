@@ -122,13 +122,16 @@ define( 'STYLES', THEMEROOT. '/css' );
 if ( ! function_exists( 'load_css_head' ) ) {
 	function load_css_head() {
 		$header_bkgd = IMAGES . '/header-bkgd.jpg';
+		$signature_bkgd = IMAGES . '/oksana-signature-light.png';
 		?>
 		
 		<!-- CSS Background Images -->
 		<style type="text/css">
-			/*.site-header {
-			  background: url(<?php echo $header_bkgd; ?>) 0 0;
-			}*/
+
+			.category .grid-header cite {
+				background-image: url(<?php echo $signature_bkgd; ?>);
+			}
+			
 			@font-face {
 		    	font-family: 'bodoni';
 			    src: url('<?php echo FONTS; ?>/bodoni-mt/BOD_MT.woff') format('woff'), 
@@ -236,11 +239,56 @@ if ( ! function_exists( 'load_css_head' ) ) {
 }
 
 
+function wpb_set_post_views($postID) {
+    $count_key = 'wpb_post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    }else{
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+//To keep the count accurate, lets get rid of prefetching
+remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
+function wpb_get_post_views($postID){
+    $count_key = 'wpb_post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0 View";
+    }
+    return $count.' Views';
+}
+
+
+ 
+/**
+ * Updated 26.05.2011!
+ * In your functions.php:
+ */
+ 
+function add_excerpt_class( $excerpt )
+{
+    $excerpt = str_replace( "<p", "<p class=\"desc\"", $excerpt );
+    return $excerpt;
+}
+ 
+add_filter( "the_excerpt", "add_excerpt_class" );
+ 
+
+
 /**
  * Enqueue scripts and styles.
  */
 function oksanat_scripts() {
 	wp_enqueue_style( 'oksanat-style', get_stylesheet_uri() );
+
+	wp_enqueue_script( 'preload', get_template_directory_uri() . '/js/preload.js', array('jquery'), '1.0', true );
 
 	wp_enqueue_script( 'oksanat-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
@@ -252,7 +300,11 @@ function oksanat_scripts() {
 
 	wp_enqueue_script( 'jq-cycle', get_template_directory_uri() . '/js/jquery_cycle.js', array('jquery'), '1.0', true );
 
+	wp_enqueue_script( 'buynow-script', get_template_directory_uri() . '/js/buynow-script.js', array('jquery'), '1.0', true );
+
 	wp_enqueue_script( 'main-script', get_template_directory_uri() . '/js/script.js', array('jquery'), '1.0', true );
+
+	wp_enqueue_script( 'analytics', get_template_directory_uri() . '/js/analytics.js', array(), '1.0', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
